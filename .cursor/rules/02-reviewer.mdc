@@ -1,0 +1,21 @@
+# General Development Rule
+
+## Principle
+
+このプロジェクトでは、
+AIは担当範囲を守りながら作業する。
+
+## Development Policy
+
+- 既存デザインを尊重する
+- 不要な変更をしない
+- 変更前に現在状態を確認する
+- 推測で大きな変更をしない
+- 変更理由を説明する
+
+## Priority
+
+1. Design fidelity
+2. Maintainability
+3. Performance
+4. Development speed
