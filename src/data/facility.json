@@ -1,0 +1,42 @@
+{
+  "brand": {
+    "name": "Sample Inn",
+    "tagline": "静けさに寄り添う宿",
+    "logoSrc": "../assets/images/logo.svg",
+    "logoAriaLabel": "Sample Inn",
+    "homeHref": "/"
+  },
+  "contact": {
+    "phone": {
+      "display": "0120-000-000",
+      "tel": "tel:0120-000-000"
+    },
+    "address": "サンプル県サンプル市サンプル町 1-2-3",
+    "email": "info@example.com"
+  },
+  "booking": {
+    "href": "https://example.com/book",
+    "label": "ご予約"
+  },
+  "header": {
+    "ctaLabel": "お電話"
+  },
+  "footer": {
+    "copyright": "Sample Inn",
+    "locale": "JA / EN"
+  },
+  "social": {
+    "instagram": "https://instagram.com/example",
+    "facebook": "https://facebook.com/example"
+  },
+  "theme": {
+    "primary": "#4A5D5B",
+    "primaryDark": "#3A4A48",
+    "accent": "#8A6A45",
+    "surface": "#F7F4EF",
+    "surfaceMuted": "#ECE7DF",
+    "text": "#1F2423",
+    "textMuted": "#5F6664",
+    "border": "#D8D2C8"
+  }
+}

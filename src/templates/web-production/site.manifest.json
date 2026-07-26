@@ -1,0 +1,30 @@
+{
+  "template": "web-production",
+  "version": "1.0.0",
+  "source": {
+    "index": "index.html"
+  },
+  "data": {
+    "facility": "data/facility.json",
+    "content": "data/content.json"
+  },
+  "output": {
+    "dir": "dist",
+    "assetPathFrom": "../assets/",
+    "assetPathFromPages": "../../assets/",
+    "assetPathTo": "assets/",
+    "styles": [
+      "styles/tokens.css",
+      "styles/theme.css",
+      "styles/main.css"
+    ],
+    "scripts": [
+      "scripts/animation.js"
+    ],
+    "removeScripts": [
+      "scripts/load-data.js",
+      "scripts/load-sections.js"
+    ]
+  },
+  "_comment_pageScripts": "ページ固有 JS 追加時: (1) output.scripts に追加 (2) 対象 HTML に script タグ (3) 下層 ../scripts/ はビルドが scripts/ に置換。page-script.example.js は雛形のためここに入れない"
+}

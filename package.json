@@ -1,23 +1,21 @@
 {
   "name": "web-production-template",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "type": "module",
+  "description": "AI Agent と協働する Web 制作基盤",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node scripts/build-production.mjs",
+    "serve": "npx --yes serve . -p 8080"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Stand-koike/web-production-template.git"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/Stand-koike/web-production-template/issues"
+  "devDependencies": {
+    "linkedom": "^0.18.9"
   },
-  "homepage": "https://github.com/Stand-koike/web-production-template#readme",
   "dependencies": {
     "gsap": "^3.15.0"
   }

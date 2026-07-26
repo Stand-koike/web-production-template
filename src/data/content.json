@@ -1,0 +1,138 @@
+{
+  "navigation": {
+    "items": [
+      { "label": "About", "href": "about.html" },
+      { "label": "Rooms", "href": "rooms.html" },
+      { "label": "Access", "href": "access.html" },
+      { "label": "Intro", "href": "#intro" },
+      { "label": "Stay", "href": "#stay" },
+      { "label": "News", "href": "#news" },
+      { "label": "FAQ", "href": "#faq" }
+    ]
+  },
+  "hero": {
+    "eyebrow": "Sample Inn",
+    "title": "心がほどける、静かな滞在",
+    "description": "ページシェル + セクション + JSON データ + 本番ビルドの雛形です。",
+    "image": "../assets/images/hero.svg",
+    "ctaLabel": "詳しく見る",
+    "ctaHref": "#intro"
+  },
+  "intro": {
+    "eyebrow": "About",
+    "title": "旅の余白を大切に",
+    "description": "Builder 工程では Pencil 生 HTML をこのようなセクション断片へ分割します。",
+    "image": "../assets/images/intro.svg"
+  },
+  "news": {
+    "eyebrow": "News",
+    "title": "お知らせ",
+    "items": [
+      {
+        "date": "2026.07.01",
+        "dateIso": "2026-07-01",
+        "title": "夏季営業のご案内",
+        "href": "#"
+      },
+      {
+        "date": "2026.06.15",
+        "dateIso": "2026-06-15",
+        "title": "新メニューのお知らせ",
+        "href": "#"
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "よくあるご質問",
+    "items": [
+      {
+        "question": "チェックインは何時ですか？",
+        "answer": "15:00 からとなります。"
+      },
+      {
+        "question": "駐車場はありますか？",
+        "answer": "無料駐車場をご用意しています。"
+      }
+    ]
+  },
+  "gallery": {
+    "eyebrow": "Gallery",
+    "title": "施設の様子",
+    "items": [
+      { "src": "../assets/images/hero.svg", "alt": "外観" },
+      { "src": "../assets/images/intro.svg", "alt": "ロビー" },
+      { "src": "../assets/images/cuisine.svg", "alt": "お食事" },
+      { "src": "../assets/images/access.svg", "alt": "周辺" }
+    ]
+  },
+  "stay": {
+    "eyebrow": "Stay",
+    "title": "客室",
+    "features": [
+      {
+        "image": "../assets/images/room.svg",
+        "alt": "客室",
+        "title": "落ち着いた客室",
+        "description": "ゆったりとした時間を過ごせる設えの客室です。",
+        "ctaLabel": "詳しく見る",
+        "ctaHref": "about.html"
+      },
+      {
+        "image": "../assets/images/host.svg",
+        "alt": "おもてなし",
+        "title": "おもてなし",
+        "description": "施設の想いは content.json で差し替えます。",
+        "ctaLabel": "Aboutへ",
+        "ctaHref": "about.html"
+      }
+    ]
+  },
+  "about": {
+    "eyebrow": "About",
+    "title": "施設について",
+    "description": "下層ページシェルの例です。セクションは {page}-{role}.html で命名し、JSON から内容を注入します。",
+    "image": "../assets/images/intro.svg",
+    "reverse": false
+  },
+  "bridge": {
+    "eyebrow": "Experience",
+    "title": "日常から少し離れる時間",
+    "description": "FullBleedBanner pattern の再利用例です。",
+    "image": "../assets/images/bridge.svg"
+  },
+  "roomsPage": {
+    "eyebrow": "Rooms",
+    "title": "客室案内",
+    "features": [
+      {
+        "image": "../assets/images/room.svg",
+        "alt": "標準室",
+        "title": "標準室",
+        "description": "2名様向けの落ち着いた客室です。",
+        "ctaLabel": "ご予約",
+        "ctaHref": "https://example.com/book"
+      },
+      {
+        "image": "../assets/images/host.svg",
+        "alt": "広めの客室",
+        "title": "広めの客室",
+        "description": "ご家族でのご利用にも対応します。",
+        "ctaLabel": "ご予約",
+        "ctaHref": "https://example.com/book"
+      }
+    ]
+  },
+  "accessPage": {
+    "eyebrow": "Access",
+    "title": "アクセス",
+    "description": "最寄り駅からお車で約15分。詳細は施設データで管理します。",
+    "image": "../assets/images/access.svg"
+  },
+  "finalCta": {
+    "title": "ご予約・お問い合わせ",
+    "description": "空室確認やご相談は、お電話または予約ページからどうぞ。",
+    "ctaLabel": "空室を確認する",
+    "ctaHref": "https://example.com/book"
+  }
+}

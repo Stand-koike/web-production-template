@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sample Inn</title>
+    <link rel="stylesheet" href="styles/tokens.css" />
+    <link rel="stylesheet" href="styles/theme.css" />
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+  <body id="top" data-page="top">
+    <div data-include="sections/header.html"></div>
+    <main class="site-main">
+      <div data-include="sections/hero.html"></div>
+      <div data-include="sections/intro.html"></div>
+      <div data-include="sections/stay.html"></div>
+      <div data-include="sections/bridge.html"></div>
+      <div data-include="sections/gallery.html"></div>
+      <div data-include="sections/news.html"></div>
+      <div data-include="sections/faq.html"></div>
+      <div data-include="sections/final-cta.html"></div>
+    </main>
+    <div data-include="sections/footer.html"></div>
+    <script type="importmap">
+      {
+        "imports": {
+          "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/+esm",
+          "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/ScrollTrigger/+esm"
+        }
+      }
+    </script>
+    <script src="scripts/load-data.js"></script>
+    <script src="scripts/load-sections.js"></script>
+    <script type="module" src="scripts/animation.js"></script>
+  </body>
+</html>
