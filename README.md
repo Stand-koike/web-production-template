@@ -125,4 +125,5 @@ AI は自由に作るのではなく、役割ごとに責任範囲を分離す�
 | [docs/performance.md](docs/performance.md) | 画像・配信の最低ルール |
 | [docs/reviewer-checklist.md](docs/reviewer-checklist.md) | Reviewer 必須チェック |
 | [docs/page-shell.md](docs/page-shell.md) | ページシェル横幅規約 |
+| [.cursor/prompts/](.cursor/prompts/) | Agent プロンプト（builder / animation / reviewer / performance / deploy） |
 | [docs/case-adoption.md](docs/case-adoption.md) | 案件リポジトリへの横展開 |

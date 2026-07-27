@@ -38,13 +38,17 @@ Builder → Animation → Reviewer → Performance → Deploy
 | Performance | 画像リサイズ・lazy/async |
 | Deploy | **`dist/` のみ**（main root 禁止） |
 
+Agent プロンプト: `.cursor/prompts/{builder,animation,reviewer,performance,deploy}.md`
+
 ---
 
 ## 次のタasks
 
 1. 案件横展開 — `case-adoption.md` + `reviewer-checklist.md` + `deployment.md`
-2. Builder → Reviewer → Deploy フロー検証
-3. Deploy / Performance プロンプト強化（必要時）
+2. 実案件での Builder → Reviewer → Performance → Deploy フロー検証
+3. 追加 Pattern（案件要求が出てから）
+
+Agent プロンプト一式: `.cursor/prompts/{builder,animation,reviewer,performance,deploy}.md` ✅
 
 ---
 
