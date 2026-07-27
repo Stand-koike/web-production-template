@@ -2,6 +2,8 @@
 
 Stand Studio Development System — AI Agent と協働する Web 制作基盤
 
+**はじめに読む:** [docs/USAGE.md](docs/USAGE.md) — テンプレートの使い方（案件フロー・Agent 依頼・落とし穴）
+
 ## Purpose
 
 宿泊施設・コーポレート・地域観光サイトを、役割分離した AI Agent ワークフローで高速・高品質に制作するためのテンプレートです。
@@ -117,7 +119,8 @@ AI は自由に作るのではなく、役割ごとに責任範囲を分離す�
 
 | ドキュメント | 内容 |
 |-------------|------|
-| [docs/PROJECT_CONTEXT.md](docs/PROJECT_CONTEXT.md) | 開発引継ぎ・タスクロードマップ |
+| **[docs/USAGE.md](docs/USAGE.md)** | **テンプレートの使い方（まずここ）** |
+| [docs/PROJECT_CONTEXT.md](docs/PROJECT_CONTEXT.md) | 開発引継ぎ・テンプレ現状 |
 | [docs/builder-workflow.md](docs/builder-workflow.md) | Builder 工程の標準手順 |
 | [docs/build-system.md](docs/build-system.md) | ビルドシステム概要 |
 | [docs/architecture.md](docs/architecture.md) | アーキテクチャ |

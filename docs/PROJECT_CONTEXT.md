@@ -54,6 +54,7 @@ Agent プロンプト一式: `.cursor/prompts/{builder,animation,reviewer,perfor
 
 ## 関連ドキュメント
 
+- **`docs/USAGE.md`** — テンプレートの使い方（案件フロー・Agent 依頼）
 - `docs/reviewer-checklist.md`
 - `docs/page-shell.md`
 - `docs/deployment.md`

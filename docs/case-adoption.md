@@ -9,6 +9,8 @@
 | `web-production-template` | 制作システム（シェル / runtime / build / docs） |
 | 案件リポジトリ | 施設固有コピー・画像・デザイン調整・公開 |
 
+**全体の流れ:** [USAGE.md](./USAGE.md)
+
 案件側でテンプレートのコア（`load-*.js` / `build-production.mjs`）を改変しない。
 不足機能はテンプレートへフィードバックしてから案件へ取り込む。
 
