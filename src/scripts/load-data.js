@@ -336,6 +336,7 @@ function applyAboutData(content) {
   about.outerHTML = `<div
       data-pattern="image-text-section"
       data-id="about"
+      data-page-hero="true"
       data-eyebrow="${data.eyebrow}"
       data-title="${data.title}"
       data-description="${data.description}"
@@ -376,6 +377,7 @@ function applyAccessPageData(content) {
   access.outerHTML = `<div
       data-pattern="image-text-section"
       data-id="access"
+      data-page-hero="true"
       data-eyebrow="${data.eyebrow}"
       data-title="${data.title}"
       data-description="${data.description}"

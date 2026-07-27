@@ -164,6 +164,10 @@ async function buildPage(entry, manifest, facility, loadDataJs, loadSectionsJs) 
   }
 }
 
+async function removeDirectory(dir) {
+  await fs.rm(dir, { recursive: true, force: true });
+}
+
 async function copyDirectory(source, destination) {
   await fs.mkdir(destination, { recursive: true });
   const entries = await fs.readdir(source, { withFileTypes: true });
@@ -225,6 +229,13 @@ async function buildSite() {
       );
     }
 
+    const unresolvedPlaceholders = output.match(/\{\{[A-Z0-9_]+\}\}/g);
+    if (unresolvedPlaceholders?.length) {
+      throw new Error(
+        `Failed to build ${entry.outputName}: unresolved placeholders ${[...new Set(unresolvedPlaceholders)].join(", ")}`
+      );
+    }
+
     const outputPath = path.join(distDir, entry.outputName);
     await fs.writeFile(outputPath, output, "utf8");
     console.log(`Built ${outputPath}`);
@@ -243,12 +254,17 @@ async function buildSite() {
   }
 
   const assetsSource = path.join(ROOT, "assets");
+  const assetsDest = path.join(distDir, "assets");
+
   try {
     await fs.access(assetsSource);
-    await copyDirectory(assetsSource, path.join(distDir, "assets"));
+    await removeDirectory(assetsDest);
+    await copyDirectory(assetsSource, assetsDest);
   } catch {
     // Optional until image assets are added at project root.
   }
+
+  await fs.writeFile(path.join(distDir, ".nojekyll"), "", "utf8");
 
   console.log("Build complete.");
 }

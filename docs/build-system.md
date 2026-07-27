@@ -44,10 +44,20 @@
 4. `initPage()` で section / data / pattern / component を展開
 5. ランタイム script を除去
 6. アセットパスを `assets/` に統一（`../../assets/` を先に置換）
-7. `assets/` / `styles/` / `scripts/` をコピー
-8. `facility.json` の `theme` から `dist/styles/theme.css` を生成
+7. **`dist/assets` を wipe してから** `assets/` をコピー（削除済みファイルが残らない）
+8. `styles/` / `scripts/` をコピー
+9. `facility.json` の `theme` から `dist/styles/theme.css` を生成
+10. `dist/.nojekyll` を出力
+11. 各 HTML に `{{…}}` 残存があればビルド失敗
 
 失敗時は `Failed to build {page}.html: ...` 形式でページ名付きエラーを出す。
+
+## ローカル確認
+
+```bash
+npm run build
+npm run preview   # dist/ を port 4173
+```
 
 ## リンク解決
 
@@ -74,6 +84,8 @@ npm run build
 - [ ] `../assets/` が残っていない
 - [ ] `load-data.js` / `load-sections.js` が含まれていない
 - [ ] 各 HTML に `scripts/animation.js` が残っている
+- [ ] `dist/.nojekyll` がある
+- [ ] `dist` に `{{…}}` が残っていない
 
 ## ページ固有スクリプトの配線
 
@@ -88,6 +100,8 @@ HTML だけ / manifest だけだと dist で欠落する。
 ## 関連
 
 - [builder-workflow.md](./builder-workflow.md)
+- [deployment.md](./deployment.md)
+- [performance.md](./performance.md)
 - [architecture.md](./architecture.md)
 - [animation-system.md](./animation-system.md)
 - [content-map-spec.md](./content-map-spec.md)

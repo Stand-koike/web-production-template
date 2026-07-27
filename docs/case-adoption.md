@@ -62,12 +62,13 @@ docs/page-shell.md
 
 ```bash
 py -m http.server 8080
-# 開発: /src/index.html , /src/pages/{name}.html
 npm run build
-# 本番: /dist/index.html , /dist/{name}.html
+npm run preview
 ```
 
-横幅: Header / main / Footer が一致し、横スクロールがないこと。
+横幅: 1366/1920 は Builder、375/768 は Reviewer（`reviewer-checklist.md`）。
+
+Deploy: **`dist/` のみ** — [deployment.md](./deployment.md)
 
 ## やってはいけないこと
 

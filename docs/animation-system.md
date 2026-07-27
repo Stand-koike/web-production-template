@@ -23,6 +23,12 @@
 - `prefers-reduced-motion: reduce` のときは **全スキップ**（エラーにしない）
 - Windows で「アニメーション効果をオフ」にしていると無言で止まる。QA 時は OS 設定を確認する
 
+### GSAP プラグイン（読み込み最小化）
+
+- **ScrollTrigger** — scroll reveal があるページのみ importmap + `animation.js` で読み込む
+- ページで使わないプラグインは **HTML に含めない**（無駄な JS 削減）
+- 本番 dist でも importmap が残る場合、全ページ共通 bundle かページ別 bundle を案件で選択
+
 実装: `src/scripts/animation.js`
 
 ---

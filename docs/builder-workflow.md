@@ -15,11 +15,11 @@ Builder Agent  ← 本ドキュメント
 Animation Agent
     ↓ GSAP アニメーション
 Reviewer
-    ↓ 品質確認
+    ↓ 375/768/1366/1920 目視・dist 確認
 Performance
-    ↓ 最適化
+    ↓ 画像/CSS/JS
 Deploy
-    ↓ dist/ を公開
+    ↓ dist/ のみ公開（main root 禁止 → Pages 404 防止）
 ```
 
 **Builder の責務**
@@ -28,12 +28,19 @@ Deploy
 - 施設情報・可変コンテンツを **JSON データ** へ切り出す
 - 開発時ランタイム（`load-data.js` / `load-sections.js`）と本番ビルド（`build-production.mjs`）を接続する
 - 複数ページ間の **リンク・画像パス** を一貫した規約で整える
+- **デスクトップ横幅整合**（1366 / 1920）とシェル規約（[page-shell.md](./page-shell.md)）
+- セクション分割と**同時に**固定幅 export の流体化
+- 各ページに `<h1>` / 固有 `title` / `meta description` の骨組み
 
 **Builder の責務外**
 
+- **375 / 768 の端末幅目視**（Reviewer 必須 — [reviewer-checklist.md](./reviewer-checklist.md)）
 - アニメーション実装（Animation Agent）
 - デザイン変更・レイアウトの再設計
+- dist での最終 QA
 - サーバー・DNS・本番ホスティング設定
+
+> **HTML がある ≠ Builder 完了。** レスポンシブ目視 ≠ Builder 責務。
 
 ---
 
@@ -151,13 +158,30 @@ Pencil HTML から `<main>` 内のブロックを切り出し `src/sections/` �
 - 可変テキストは `data-content-bind` / `data-facility-bind` 等のフックを残す
 - 繰り返し UI は `data-component` / `data-pattern` へ昇格させる
 
-**固定幅 export 対策（推奨）**
+**固定幅 export 対策（分割と同時に実施 — 後回し禁止）**
+
+| Pencil / Tailwind export | テンプレ正（流体化） |
+|--------------------------|---------------------|
+| `w-[1440px] items-start` | `w-full max-w-[1440px] mx-auto items-stretch` → CSS: `.container` / `.page-shell` |
+| `w-[Npx]` 固定 | `w-full max-w-[Npx] lg:w-[Npx]` |
+| `left-[80px]` 固定 | `left-4 md:left-[80px]` |
+| 横並び固定 | `flex-col lg:flex-row` |
+| `p-[48px]` 固定 | `px-5 py-12 md:p-[48px]` |
+| absolute タイムライン | モバイルはフロー縦積み、`lg:` でデスクトップ再現 |
+| Hero/CTA `w-[1440px] absolute` | 親 `relative` + 子 `absolute inset-0 w-full h-full`（`.hero__overlay` 等） |
 
 | 用途 | 推奨 |
 |------|------|
 | Hero / CTA オーバーレイ | 親 relative + 子 full-bleed（固定 artboard 幅を使わない） |
 | 複合レイアウト | 容器 max-width + 子 width 100% |
 | 全幅帯 | `full-bleed-banner` と同思想 |
+
+**SEO / セマンティクス（Builder 完了条件）**
+
+- ページ主見出しは `<h1>`（下層 Hero: `data-page-hero="true"`）
+- Pencil 見出し相当の `div` を h1 として残さない
+- 各ページシェルに固有 `<title>` + `meta name="description"`
+- コンポーネント `{{VAR}}` は展開時に必ず埋める（dist に残さない）
 
 ---
 
@@ -336,6 +360,17 @@ project-root/
 - [ ] カード列の親に `data-animate="stagger-grid"`
 - [ ] Header / Footer に animate フックがない
 
+### SEO / コンポーネント（Builder 完了条件）
+
+- [ ] 各ページに `<h1>` が 1 つ（`data-page-hero="true"` 等）
+- [ ] 各ページに固有 `title` + `meta description`
+- [ ] `npm run build` 後、`dist` に `{{…}}` プレースホルダが残っていない
+
+### Reviewer 引継ぎ
+
+Builder 完了後、**375 / 768 / 1366 / 1920** の目視は Reviewer 必須。  
+チェックリスト: [reviewer-checklist.md](./reviewer-checklist.md)
+
 ### ページ固有スクリプトを足すとき（完了条件）
 
 1. `src/scripts/{name}.js`（`page:ready` / `DOMContentLoaded` 両対応。雛形: `page-script.example.js`）
@@ -366,6 +401,13 @@ project-root/
 10. **`body[data-page]`** — アニメ・固有 JS の分岐用。高さ変化 UI は `data-motion="height-ui"`
 11. **ページ固有 JS** — HTML + manifest.output.scripts（パス置換は下層一括）
 12. **セクションは UTF-8 BOM なし**
+13. **レスポンシブ目視は Reviewer** — Builder は 1366/1920 の横幅整合まで
+14. **`overflow-x: hidden` は安全網** — クリップで隠した固定幅を Builder 完了としない
+15. **コンポーネント `{{VAR}}` は dist に残さない**
+
+## Feedback — responsive & Reviewer (generalized)
+
+Must / Should / Do not template の全文は [reviewer-checklist.md](./reviewer-checklist.md) 末尾を参照。
 
 ---
 

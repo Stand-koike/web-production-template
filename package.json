@@ -6,7 +6,9 @@
   "description": "AI Agent と協働する Web 制作基盤",
   "scripts": {
     "build": "node scripts/build-production.mjs",
-    "serve": "npx --yes serve . -p 8080"
+    "preview": "npx --yes serve dist -l 4173",
+    "serve": "npx --yes serve . -p 8080",
+    "optimize-images": "node scripts/optimize-images.mjs"
   },
   "repository": {
     "type": "git",

@@ -2,62 +2,56 @@
 
 ## Overview
 
-この制作システムでは、
-役割ごとにAI Agentを分離する。
+役割ごとに AI Agent を分離する。
 
 ## Flow
 
+```
 Pencil.dev
-↓
-Builder
-↓
-Animation
-↓
-Reviewer
-↓
-Performance
-↓
-Deploy
-
+    ↓
+Builder        … 構造・1366/1920 横幅・SEO 骨組み
+    ↓
+Animation      … GSAP（dev: page:ready / prod: DOMContentLoaded）
+    ↓
+Reviewer       … 375/768/1366/1920 目視・dist 確認
+    ↓
+Performance    … 画像・配信
+    ↓
+Deploy         … dist/ のみ公開（main root 禁止）
+```
 
 ## Agent Responsibility
 
 ### Builder
 
-目的:
-コード整理
-
-担当:
-HTML
-Tailwind
-構造
-
+- HTML 構造・ページシェル・データ切り出し
+- デスクトップ横幅整合（1366/1920）
+- **レスポンシブ目視はしない**
 
 ### Animation
 
-目的:
-体験向上
-
-担当:
-GSAP
-Scroll Animation
-
+- GSAP + ScrollTrigger（必要なページのみ）
+- `prefers-reduced-motion`
 
 ### Reviewer
 
-目的:
-品質確認
-
-担当:
-問題発見
-
+- **375 / 768 / 1366 / 1920**（src + dist）
+- SEO / a11y / `{{…}}` 残存なし
+- コード修正禁止（報告のみ）
 
 ### Performance
 
-目的:
-高速化
+- 画像リサイズ・lazy/async
+- 未使用 JS 削減
 
-担当:
-画像
-CSS
-JS
+### Deploy
+
+- **`dist/` のみ**をホスト
+- GitHub Pages: **gh-pages** または Actions（**main/(root) → 404**）
+
+## 関連
+
+- [builder-workflow.md](./builder-workflow.md)
+- [reviewer-checklist.md](./reviewer-checklist.md)
+- [deployment.md](./deployment.md)
+- [performance.md](./performance.md)

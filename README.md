@@ -21,10 +21,12 @@ Reviewer
     ↓
 Performance
     ↓
-Deploy（dist/）
+Deploy（dist/ のみ — main root 公開禁止）
 ```
 
 **Builder 工程の詳細:** [docs/builder-workflow.md](docs/builder-workflow.md)
+
+> GitHub Pages を `main` / (root) にすると **404**（ルートに `index.html` なし）。`dist/` を `gh-pages` へ。
 
 ## Technology
 
@@ -85,6 +87,7 @@ docs/
 ```bash
 npm install
 npm run build
+npm run preview   # dist/ を http://localhost:4173 で確認
 ```
 
 | 入力 | 出力 |
@@ -96,8 +99,15 @@ npm run build
 
 - section / data / pattern / component を **ビルド時に展開済み**
 - `load-data.js` / `load-sections.js` は **含めない**
-- 画像パスは `assets/` に統一
+- 画像パスは `assets/` に統一（**毎回 `dist/assets` を wipe してからコピー**）
+- `dist/.nojekyll` を出力（GitHub Pages）
 - `facility.json` の `theme` から `dist/styles/theme.css` を生成
+
+### 公開（Deploy）
+
+- **公開対象は `dist/` のみ** — リポジトリ root ではない
+- GitHub Pages: **`gh-pages` ブランチ root** または GitHub Actions（[docs/deployment.md](docs/deployment.md)）
+- `.github/workflows/deploy-pages.yml` 同梱
 
 ## Core Principle
 
@@ -111,5 +121,8 @@ AI は自由に作るのではなく、役割ごとに責任範囲を分離す�
 | [docs/builder-workflow.md](docs/builder-workflow.md) | Builder 工程の標準手順 |
 | [docs/build-system.md](docs/build-system.md) | ビルドシステム概要 |
 | [docs/architecture.md](docs/architecture.md) | アーキテクチャ |
-| [docs/deployment.md](docs/deployment.md) | デプロイ手順 |
+| [docs/deployment.md](docs/deployment.md) | デプロイ手順（dist のみ・Pages 404 防止） |
+| [docs/performance.md](docs/performance.md) | 画像・配信の最低ルール |
+| [docs/reviewer-checklist.md](docs/reviewer-checklist.md) | Reviewer 必須チェック |
+| [docs/page-shell.md](docs/page-shell.md) | ページシェル横幅規約 |
 | [docs/case-adoption.md](docs/case-adoption.md) | 案件リポジトリへの横展開 |

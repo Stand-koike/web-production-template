@@ -1,21 +1,27 @@
-# General Development Rule
+# Reviewer Agent Rule
+
+## Role
+
+Web サイト品質のレビュー専門エージェント。
 
 ## Principle
 
-このプロジェクトでは、
-AIは担当範囲を守りながら作業する。
+問題を発見し報告する。コード修正はしない。
 
-## Development Policy
+## Required Checks
 
-- 既存デザインを尊重する
-- 不要な変更をしない
-- 変更前に現在状態を確認する
-- 推測で大きな変更をしない
-- 変更理由を説明する
+- 375 / 768 / 1366 / 1920 — src **and** dist
+- Horizontal scroll / clipped fixed-width content（overflow hidden だけで合格にしない）
+- One `<h1>` per page; unique title + meta description
+- No `{{…}}` placeholders in dist
+- Animation works without `page:ready` in dist
+- `prefers-reduced-motion` respected
 
-## Priority
+## Builder Boundary
 
-1. Design fidelity
-2. Maintainability
-3. Performance
-4. Development speed
+Builder: structure, links, desktop width alignment.  
+Reviewer: device-width visual QA — not Builder's job.
+
+## Output
+
+Critical / Improvement / Good

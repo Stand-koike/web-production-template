@@ -30,11 +30,37 @@ function getTemplateVars(element) {
   return vars;
 }
 
-function applyTemplate(template, vars) {
-  let html = template;
-  for (const [key, value] of Object.entries(vars)) {
-    html = html.replaceAll(`{{${key}}}`, value ?? "");
+function extractTemplateKeys(template) {
+  return [...template.matchAll(/\{\{([A-Z0-9_]+)\}\}/g)].map((match) => match[1]);
+}
+
+function findUnresolvedPlaceholders(html) {
+  const matches = html.match(/\{\{[A-Z0-9_]+\}\}/g);
+  return matches ? [...new Set(matches)] : [];
+}
+
+function applyTemplate(template, vars, defaults = {}) {
+  const keys = extractTemplateKeys(template);
+  const merged = { ...defaults };
+
+  for (const key of keys) {
+    merged[key] = vars[key] ?? defaults[key] ?? "";
   }
+
+  let html = template;
+  for (const key of keys) {
+    html = html.replaceAll(`{{${key}}}`, merged[key]);
+  }
+
+  const remaining = findUnresolvedPlaceholders(html);
+  if (remaining.length > 0) {
+    const message = `Unresolved template placeholders: ${remaining.join(", ")}`;
+    if (typeof window !== "undefined" && window.__SITE_BUILD__) {
+      throw new Error(message);
+    }
+    console.warn(`[load-sections] ${message}`);
+  }
+
   return html;
 }
 
@@ -190,7 +216,14 @@ async function loadComponent(element) {
   }
 
   const template = await fetchText(src);
-  element.outerHTML = applyTemplate(template, vars);
+  let html = applyTemplate(template, vars);
+
+  if (name === "section-heading" && vars.PAGE_HERO === "true") {
+    html = html.replace('<h2 class="section-heading__title">', '<h1 class="section-heading__title">');
+    html = html.replace("</h2>", "</h1>");
+  }
+
+  element.outerHTML = html;
 }
 
 function buildFeatureCardHtml(element, vars) {
@@ -218,10 +251,11 @@ function buildImageTextSectionHtml(element, vars) {
   const heading = getSlotContent(element, "heading");
   const body = getSlotContent(element, "body");
   const reverse = vars.REVERSE === "true";
+  const titleTag = vars.PAGE_HERO === "true" ? "h1" : "h2";
   const contentFirst = `
           <div class="image-text-section__content js-fade-up">
             <p class="section-heading__eyebrow">${vars.EYEBROW || ""}</p>
-            <h2 class="section-heading__title">${vars.TITLE || heading}</h2>
+            <${titleTag} class="section-heading__title">${vars.TITLE || heading}</${titleTag}>
             <p class="image-text-section__description">${vars.DESCRIPTION || body}</p>
           </div>`;
   const media = `

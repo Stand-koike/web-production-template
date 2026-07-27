@@ -31,7 +31,8 @@
 1. **セクション分割前に** ページシェルをテンプレート規約へ合わせる（`docs/page-shell.md`）
 2. **export HTML のラッパークラスをそのまま正としない**（可変幅 + max-width + 中央寄せ）
 3. `<main class="site-main">` / `body[data-page]` / 下層は `__SRC_BASE__`・`__ASSET_BASE__`
-4. **Builder 完了時に横幅チェックリストを実施**（`docs/builder-workflow.md`）
+4. **Builder 完了時に横幅チェックリストを実施**（1366/1920 — `docs/builder-workflow.md`）
+5. **375/768 の端末幅目視は Reviewer**（`docs/reviewer-checklist.md`）
 
 下層の新規ページは `src/templates/web-production/page.shell.html` をコピーして始める。
 
@@ -42,11 +43,14 @@
 - 画像パスは TOP: `../assets/`、下層: `../../assets/`
 - TOP / 下層どちらも GSAP + `animation.js` を読み込む
 - 各ページの `body` に `data-page="..."`（高さ変化 UI は `data-motion="height-ui"`）
+- `main.site-main` / `body` overflow-x hidden / 固定 artboard 幅ラッパー禁止
+- 下層 Hero: `data-page-hero="true"` で `<h1>`
+- 各ページに固有 `title` + `meta description`
+- コンポーネント `{{VAR}}` を dist に残さない
 - Animation 前: `main` 直下にセクション、Hero に `data-animate="hero"`、カード列親に `data-animate="stagger-grid"`
 - Header / Footer に animate フックを付けない
-- ページ固有 JS を足すときは HTML + `manifest.output.scripts`（雛形: `page-script.example.js`）
 - セクション HTML は UTF-8 BOM なし
-- 詳細は `docs/builder-workflow.md` / `docs/page-shell.md` / `docs/animation-system.md` を参照
+- 詳細は `docs/builder-workflow.md` / `docs/page-shell.md` / `docs/reviewer-checklist.md` を参照
 
 ## Output
 
@@ -54,5 +58,6 @@
 
 1. 変更内容
 2. Component / Pattern / Section 候補
-3. 横幅チェックリストの実施結果
-4. 次工程（Animation）への引継ぎ事項（data-animate 付与状況を含む）
+3. 横幅チェックリストの実施結果（1366/1920）
+4. SEO 骨組み（h1 / title / description）
+5. 次工程（Animation → Reviewer）への引継ぎ事項

@@ -39,4 +39,7 @@
 
   --shadow-sm: 0 1px 2px rgba(31, 36, 35, 0.08);
   --shadow-md: 0 10px 30px rgba(31, 36, 35, 0.12);
+
+  /* ページ最大幅（Pencil artboard 固定幅の直写禁止 — docs/page-shell.md） */
+  --layout-max-width: 1440px;
 }
