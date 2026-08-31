@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sample Inn — a boutique stay for restful travel.">
+    <title>Sample Inn</title>
+    <link rel="stylesheet" href="styles/tokens.css">
+    <link rel="stylesheet" href="styles/theme.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/responsive-fluid.css">
+  </head>
+  <body id="top" data-page="top">
+    <header class="site-header">
+        <div class="container site-header__inner">
+          <a href="/" class="site-header__brand" aria-label="Sample Inn">
+            <img src="assets/images/logo.svg" alt="Sample Inn" class="site-header__logo">
+            <span class="site-header__name">Sample Inn</span>
+          </a>
+          <nav class="site-header__nav" aria-label="Primary">
+            <a class="nav-link" href="about.html">About</a>
+
+          <a class="nav-link" href="rooms.html">Rooms</a>
+
+          <a class="nav-link" href="access.html">Access</a>
+
+          <a class="nav-link" href="#intro">Intro</a>
+
+          <a class="nav-link" href="#stay">Stay</a>
+
+          <a class="nav-link" href="#news">News</a>
+
+          <a class="nav-link" href="#faq">FAQ</a>
+
+          </nav>
+          <a class="btn btn-primary site-header__cta" href="tel:0120-000-000">お電話</a>
+
+        </div>
+      </header>
+
+    <main class="site-main">
+      <section class="hero" id="hero" data-content-bind="hero">
+  <img class="hero__image" data-bind="hero-image" src="assets/images/hero.svg" alt="心がほどける、静かな滞在">
+  <div class="hero__overlay">
+    <div class="hero__content container" data-animate="hero">
+      <p class="section-heading__eyebrow" data-bind="hero-eyebrow">Sample Inn</p>
+      <h1 class="hero__title" data-bind="hero-title">心がほどける、静かな滞在</h1>
+      <p class="hero__description" data-bind="hero-description">ページシェル + セクション + JSON データ + 本番ビルドの雛形です。</p>
+      <a class="btn btn-primary" href="#intro">詳しく見る</a>
+
+    </div>
+  </div>
+</section>
+
+      <section class="image-text-section" id="intro" data-content-bind="intro">
+  <div class="container image-text-section__inner">
+    <div class="image-text-section__content js-fade-up">
+      <div class="section-heading">
+  <p class="section-heading__eyebrow">About</p>
+  <h2 class="section-heading__title">旅の余白を大切に</h2>
+</div>
+
+      <p class="image-text-section__description" data-bind="intro-description">Builder 工程では Pencil 生 HTML をこのようなセクション断片へ分割します。</p>
+    </div>
+    <figure class="image-text-section__media js-fade-in">
+      <img data-bind="intro-image" src="assets/images/intro.svg" alt="旅の余白を大切に" loading="lazy">
+    </figure>
+  </div>
+</section>
+
+      <section class="content-section" id="stay" data-content-bind="stay">
+  <div class="container">
+    <div class="js-fade-up" data-animate="reveal">
+      <div class="section-heading">
+  <p class="section-heading__eyebrow">Stay</p>
+  <h2 class="section-heading__title">客室</h2>
+</div>
+
+    </div>
+    <div class="feature-grid" data-bind="stay-grid" data-animate="stagger-grid"><article class="feature-card js-fade-up" data-animate="card">
+          <figure class="feature-card__media">
+            <img src="assets/images/room.svg" alt="客室" loading="lazy">
+          </figure>
+          <div class="feature-card__body">
+            <h3 class="feature-card__title">落ち着いた客室</h3>
+            <p class="feature-card__description">ゆったりとした時間を過ごせる設えの客室です。</p>
+            <a class="btn btn-outline" href="about.html">詳しく見る</a>
+
+          </div>
+        </article>
+<article class="feature-card js-fade-up" data-animate="card">
+          <figure class="feature-card__media">
+            <img src="assets/images/host.svg" alt="おもてなし" loading="lazy">
+          </figure>
+          <div class="feature-card__body">
+            <h3 class="feature-card__title">おもてなし</h3>
+            <p class="feature-card__description">施設の想いは content.json で差し替えます。</p>
+            <a class="btn btn-outline" href="about.html">Aboutへ</a>
+
+          </div>
+        </article></div>
+  </div>
+</section>
+
+      <section class="full-bleed-banner js-fade-in" id="bridge">
+        <img class="full-bleed-banner__image" src="assets/images/bridge.svg" alt="日常から少し離れる時間">
+        <div class="full-bleed-banner__overlay">
+          <div class="container">
+            <p class="full-bleed-banner__eyebrow">Experience</p>
+            <h2 class="full-bleed-banner__title">日常から少し離れる時間</h2>
+            <p class="full-bleed-banner__description">FullBleedBanner pattern の再利用例です。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="gallery content-section" id="gallery" data-content-bind="gallery">
+  <div class="container">
+    <div class="js-fade-up" data-animate="reveal">
+      <div class="section-heading">
+  <p class="section-heading__eyebrow">Gallery</p>
+  <h2 class="section-heading__title">施設の様子</h2>
+</div>
+
+    </div>
+    <div class="gallery__grid" data-bind="gallery-grid" data-animate="stagger-grid"><figure class="gallery__item js-fade-up" data-animate="card">
+          <img class="responsive-image" src="assets/images/hero.svg" alt="外観" loading="lazy">
+        </figure>
+<figure class="gallery__item js-fade-up" data-animate="card">
+          <img class="responsive-image" src="assets/images/intro.svg" alt="ロビー" loading="lazy">
+        </figure>
+<figure class="gallery__item js-fade-up" data-animate="card">
+          <img class="responsive-image" src="assets/images/cuisine.svg" alt="お食事" loading="lazy">
+        </figure>
+<figure class="gallery__item js-fade-up" data-animate="card">
+          <img class="responsive-image" src="assets/images/access.svg" alt="周辺" loading="lazy">
+        </figure></div>
+  </div>
+</section>
+
+      <section class="content-section" id="news" data-content-bind="news">
+  <div class="container">
+    <div class="js-fade-up" data-animate="reveal">
+      <div class="section-heading">
+  <p class="section-heading__eyebrow">News</p>
+  <h2 class="section-heading__title">お知らせ</h2>
+</div>
+
+    </div>
+    <div class="news-list" data-bind="news-list" data-animate="stagger-grid"><article class="news-card" data-animate="card">
+  <time class="news-card__date" datetime="2026-07-01">2026.07.01</time>
+  <h3 class="news-card__title">
+    <a href="#">夏季営業のご案内</a>
+  </h3>
+</article>
+
+<article class="news-card" data-animate="card">
+  <time class="news-card__date" datetime="2026-06-15">2026.06.15</time>
+  <h3 class="news-card__title">
+    <a href="#">新メニューのお知らせ</a>
+  </h3>
+</article>
+</div>
+  </div>
+</section>
+
+      <section class="content-section" id="faq" data-content-bind="faq">
+  <div class="container">
+    <div class="js-fade-up" data-animate="reveal">
+      <div class="section-heading">
+  <p class="section-heading__eyebrow">FAQ</p>
+  <h2 class="section-heading__title">よくあるご質問</h2>
+</div>
+
+    </div>
+    <div class="faq-list" data-bind="faq-list" data-animate="stagger-grid"><details class="faq-card" data-animate="card">
+  <summary class="faq-card__question">チェックインは何時ですか？</summary>
+  <p class="faq-card__answer">15:00 からとなります。</p>
+</details>
+
+<details class="faq-card" data-animate="card">
+  <summary class="faq-card__question">駐車場はありますか？</summary>
+  <p class="faq-card__answer">無料駐車場をご用意しています。</p>
+</details>
+</div>
+  </div>
+</section>
+
+      <section class="booking-cta" id="final-cta" data-content-bind="final-cta">
+  <div class="container booking-cta__inner">
+    <div class="booking-cta__content js-fade-up">
+      <p class="section-heading__eyebrow">Booking</p>
+      <h2 class="section-heading__title" data-bind="final-cta-title">ご予約・お問い合わせ</h2>
+      <p class="booking-cta__description" data-bind="final-cta-description">空室確認やご相談は、お電話または予約ページからどうぞ。</p>
+      <a class="phone-display" href="tel:0120-000-000">0120-000-000</a>
+
+    </div>
+    <div class="booking-cta__actions js-fade-up">
+      <a class="btn btn-primary" href="https://example.com/book">空室を確認する</a>
+
+    </div>
+  </div>
+</section>
+
+    </main>
+    <footer class="site-footer">
+        <div class="container site-footer__inner">
+          <div>
+            <img src="assets/images/logo.svg" alt="Sample Inn" class="site-footer__logo">
+            <p class="site-footer__address">サンプル県サンプル市サンプル町 1-2-3</p>
+            <a class="phone-display" href="tel:0120-000-000">0120-000-000</a>
+
+            <div class="social-links">
+  <a class="social-links__item" href="https://instagram.com/example" target="_blank" rel="noopener noreferrer">Instagram</a>
+  <a class="social-links__item" href="https://facebook.com/example" target="_blank" rel="noopener noreferrer">Facebook</a>
+</div>
+
+          </div>
+          <nav class="site-footer__nav" aria-label="Footer">
+            <a class="nav-link" href="about.html">About</a>
+
+          <a class="nav-link" href="rooms.html">Rooms</a>
+
+          <a class="nav-link" href="access.html">Access</a>
+
+          <a class="nav-link" href="#intro">Intro</a>
+
+          <a class="nav-link" href="#stay">Stay</a>
+
+          <a class="nav-link" href="#news">News</a>
+
+          <a class="nav-link" href="#faq">FAQ</a>
+
+          </nav>
+          <p class="site-footer__copyright">© Sample Inn</p>
+        </div>
+      </footer>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "gsap": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/+esm",
+          "gsap/ScrollTrigger": "https://cdn.jsdelivr.net/npm/gsap@3.15.0/ScrollTrigger/+esm"
+        }
+      }
+    </script>
+    <script type="module" src="scripts/animation.js"></script>
+  </body>
+</html>
