@@ -192,7 +192,7 @@ a {
 
 .hero {
   position: relative;
-  min-height: 72vh;
+  min-height: max(var(--hero-height-min), 72svh);
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -450,6 +450,11 @@ a {
 }
 
 @media (min-width: 768px) {
+  .hero {
+    min-height: 0;
+    height: var(--hero-height-fluid);
+  }
+
   .image-text-section__inner {
     grid-template-columns: 1fr 1fr;
   }

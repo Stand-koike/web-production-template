@@ -1,0 +1,144 @@
+/*
+ * Fluid layout between tablet and 1440px design (768–1439px).
+ * 1440px+ uses design values from main.css / section markup.
+ *
+ * Case-specific overrides (Pencil data-pencil-name, Tailwind w-[Npx]):
+ *   → append to this file OR src/styles/responsive-case.css (gitignored in template)
+ * See docs/responsive-patterns.md
+ */
+
+/* —— Tablet (768–1023px): type / spacing shrink, keep md layout —— */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .site-header__inner {
+    padding-inline: clamp(1rem, 3vw, 1.5rem);
+    gap: clamp(0.75rem, 2vw, 1.25rem);
+  }
+
+  .site-header__logo {
+    width: 120px;
+  }
+
+  .site-header__nav {
+    gap: clamp(0.75rem, 1.5vw, 1rem);
+  }
+
+  .site-header__nav .nav-link {
+    font-size: var(--text-sm);
+  }
+
+  .hero__overlay {
+    padding-inline: clamp(1rem, 4vw, 2rem);
+  }
+
+  .hero__title {
+    font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+    line-height: 1.35;
+  }
+
+  .image-text-section,
+  .feature-grid,
+  .content-section,
+  .booking-cta {
+    padding-inline: clamp(1rem, 4vw, 2rem);
+  }
+}
+
+/* —— Compact desktop (1024–1439px): scale between tablet and max design —— */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .site-main {
+    overflow-x: clip;
+  }
+
+  .container {
+    width: min(var(--layout-max-width), calc(100% - var(--section-padding-inline) * 2));
+  }
+
+  .site-header__inner,
+  .site-footer__inner {
+    padding-inline: var(--section-padding-inline);
+    gap: clamp(0.75rem, 1.5vw, 1.5rem);
+  }
+
+  .site-header__logo {
+    width: clamp(120px, 12vw, 136px);
+  }
+
+  .site-header__nav {
+    gap: clamp(0.625rem, 1.2vw, 1rem);
+  }
+
+  .site-header__nav .nav-link {
+    font-size: clamp(0.75rem, 1vw, 0.875rem);
+  }
+
+  .hero__overlay {
+    padding-inline: var(--section-padding-inline);
+  }
+
+  .hero__title {
+    font-size: clamp(2rem, 4.4vw, 3rem);
+    line-height: 1.35;
+  }
+
+  .image-text-section,
+  .feature-grid,
+  .content-section {
+    padding-inline: var(--section-padding-inline);
+  }
+
+  .image-text-section__inner,
+  .feature-grid {
+    gap: clamp(1.5rem, 3vw, 2rem);
+  }
+
+  .full-bleed-banner {
+    min-height: clamp(280px, 28vw, 420px);
+  }
+
+  .full-bleed-banner__image {
+    min-height: clamp(280px, 28vw, 420px);
+  }
+
+  /*
+   * Pencil / Tailwind export overrides (案件で必要に応じて追記)
+   * — lg:flex-row 子の固定幅を fluid 化
+   */
+  main [class*="lg:flex-row"] > [class*="lg:w-["],
+  main [class*="lg:flex-row"] > [class*="max-w-["] {
+    width: auto !important;
+    min-width: 0 !important;
+  }
+
+  main [class*="lg:flex-row"] > [class*="lg:w-[560px]"],
+  main [class*="lg:flex-row"] > [class*="max-w-[560px]"] {
+    max-width: min(560px, 44vw) !important;
+  }
+
+  main [class*="lg:flex-row"] > [class*="lg:w-[635px]"],
+  main [class*="lg:flex-row"] > [class*="max-w-[635px]"] {
+    max-width: min(635px, 48vw) !important;
+  }
+
+  main [class*="lg:flex-row"] > [class*="lg:w-[509px]"],
+  main [class*="lg:flex-row"] > [class*="max-w-[509px]"] {
+    max-width: min(509px, 40vw) !important;
+  }
+
+  main [class*="lg:flex-row"] > [class*="h-[420px]"],
+  main [class*="lg:flex-row"] > [class*="md:h-[420px]"] {
+    height: clamp(280px, 32vw, 420px) !important;
+  }
+
+  [class*="lg:px-[80px]"],
+  [class*="lg:pl-[80px]"],
+  [class*="lg:pr-[80px]"],
+  [class*="md:p-[96px_80px]"] {
+    padding-left: var(--section-padding-inline) !important;
+    padding-right: var(--section-padding-inline) !important;
+  }
+
+  [class*="md:p-[96px_80px]"] {
+    padding-top: clamp(4rem, 8vw, 6rem) !important;
+    padding-bottom: clamp(4rem, 8vw, 6rem) !important;
+  }
+}

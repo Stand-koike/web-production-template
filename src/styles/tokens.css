@@ -42,4 +42,12 @@
 
   /* ページ最大幅（Pencil artboard 固定幅の直写禁止 — docs/page-shell.md） */
   --layout-max-width: 1440px;
+
+  /* Hero / section fluid tokens — docs/responsive-patterns.md */
+  --hero-height-min: 560px;
+  --hero-height-max: 820px;
+  --hero-height-fluid: clamp(var(--hero-height-min), 85svh, var(--hero-height-max));
+  --section-padding-inline: clamp(1.5rem, 5vw, 5rem);
+  --section-padding-inline-max: 5rem;
+  --header-overlay-height: 72px;
 }

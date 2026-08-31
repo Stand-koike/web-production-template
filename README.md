@@ -50,12 +50,13 @@ src/
   components/               button / nav-link 等
   data/                     facility.json / content.json
   scripts/                  load-data.js / load-sections.js / animation.js
-  styles/                   tokens.css / theme.css / main.css
+  styles/                   tokens.css / theme.css / main.css / responsive-fluid.css
   templates/web-production/ ビルド設定
 scripts/
   build-production.mjs      本番 HTML 生成
 docs/
   builder-workflow.md       Builder 工程ドキュメント
+  responsive-patterns.md    768–1439px / Hero 高さ規約（ならいの風 FB）
   PROJECT_CONTEXT.md        開発引継ぎ資料
 ```
 
@@ -128,5 +129,6 @@ AI は自由に作るのではなく、役割ごとに責任範囲を分離す�
 | [docs/performance.md](docs/performance.md) | 画像・配信の最低ルール |
 | [docs/reviewer-checklist.md](docs/reviewer-checklist.md) | Reviewer 必須チェック |
 | [docs/page-shell.md](docs/page-shell.md) | ページシェル横幅規約 |
+| [docs/responsive-patterns.md](docs/responsive-patterns.md) | レスポンシブ（768–1439px / Hero clamp） |
 | [.cursor/prompts/](.cursor/prompts/) | Agent プロンプト（builder / animation / reviewer / performance / deploy） |
 | [docs/case-adoption.md](docs/case-adoption.md) | 案件リポジトリへの横展開 |

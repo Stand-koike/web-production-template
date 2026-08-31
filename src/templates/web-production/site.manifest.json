@@ -16,7 +16,8 @@
     "styles": [
       "styles/tokens.css",
       "styles/theme.css",
-      "styles/main.css"
+      "styles/main.css",
+      "styles/responsive-fluid.css"
     ],
     "scripts": [
       "scripts/animation.js"

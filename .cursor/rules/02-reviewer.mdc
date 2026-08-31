@@ -10,7 +10,8 @@ Web サイト品質のレビュー専門エージェント。
 
 ## Required Checks
 
-- 375 / 768 / 1366 / 1920 — src **and** dist
+- 375 / 768 / 1024 / 1280 / 1366 / 1920 — src **and** dist
+- Short viewport height (e.g. 768×600) — Hero bottom clip
 - Horizontal scroll / clipped fixed-width content（overflow hidden だけで合格にしない）
 - One `<h1>` per page; unique title + meta description
 - No `{{…}}` placeholders in dist

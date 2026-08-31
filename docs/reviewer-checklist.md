@@ -3,7 +3,7 @@
 品質確認の完了条件。  
 **レスポンシブの端末幅目視は Reviewer 必須。** Builder 完了 ≠ 本番公開可。
 
-関連: [builder-workflow.md](./builder-workflow.md) / [page-shell.md](./page-shell.md) / [animation-system.md](./animation-system.md)
+関連: [builder-workflow.md](./builder-workflow.md) / [page-shell.md](./page-shell.md) / [responsive-patterns.md](./responsive-patterns.md) / [animation-system.md](./animation-system.md)
 
 ---
 
@@ -42,7 +42,7 @@
 
 ## Reviewer 必須 — レスポンシブ
 
-**375 / 768 / 1366 / 1920** の各幅で **src と dist** を目視する。
+**375 / 768 / 1024 / 1280 / 1366 / 1920** の各幅で **src と dist** を目視する。
 
 - [ ] 横スクロールが発生しない
 - [ ] Header・main・Footer の横幅が一致する
@@ -50,6 +50,7 @@
 - [ ] 固定幅 + absolute のはみ出し・クリップがない
 - [ ] 主要 CTA・ナビがタップ可能（モバイル）
 - [ ] テキストが viewport 外に切れていない
+- [ ] **Hero 下端**が `overflow: hidden` で切れていない（768×600 等の短い高さも確認）
 
 ### overflow について
 
@@ -76,7 +77,7 @@ Tailwind `preflight: false` 利用案件では `<h1>` に `margin: 0` 等で見�
 - [ ] `dist/*.html` に `load-data.js` / `load-sections.js` が**ない**
 - [ ] `dist` に **`{{…}}` プレースホルダ残存がない**
 - [ ] GSAP + `scripts/animation.js` が全ページにある
-- [ ] **dist でも 375 / 768 / 1366 / 1920 を確認**（src だけ見ない）
+- [ ] **dist でも 375 / 768 / 1024 / 1280 / 1366 / 1920 を確認**（src だけ見ない）
 - [ ] アニメ: loader なしで `DOMContentLoaded` 起動（`page:ready` のみ待ち禁止）
 - [ ] `prefers-reduced-motion: reduce` で抑制される
 
@@ -119,12 +120,14 @@ Tailwind `preflight: false` 利用案件では `<h1>` に `margin: 0` 等で見�
 
 ### Must
 
-1. **Reviewer owns device checks** (375 / 768 / 1366 / 1920). Builder owns structure, links, desktop width only. `overflow-x: hidden` ≠ fixed-width clip fix.
+1. **Reviewer owns device checks** (375 / 768 / **1024 / 1280** / 1366 / 1920) and **short viewport height** (e.g. 768×600). Builder owns structure, links, desktop width only. `overflow-x: hidden` ≠ fixed-width clip fix.
 2. **Page shell defaults:** fluid width + max-width + center; `main` full width; `body { overflow-x: hidden }`. Ban Pencil fixed artboard wrappers and full-bleed fixed-width absolute overlays.
-3. **Fluidize sections at split time:** responsive max-width patterns; mobile-first offsets; column-then-row layouts.
-4. **SEO gate:** one `<h1>` per page; unique `title` + `meta description`.
-5. **Component vars:** every `{{VAR}}` supplied or defaulted; fail if placeholders remain in `dist/`.
-6. **Publish `dist/` only.** Keep `dist/` gitignored. Do **not** point GitHub Pages at `main`/(root) (no root `index.html` → **404**). Deploy built `dist/` to **`gh-pages`/(root)** or GitHub Actions. Emit `.nojekyll`. Wipe `dist/assets` before copy.
+3. **Fluidize sections at split time:** responsive max-width patterns; mobile-first offsets; column-then-row layouts. Link **`responsive-fluid.css`** on every shell (768–1439px). See [responsive-patterns.md](./responsive-patterns.md).
+4. **Hero / compact desktop:** Hero 768px+ uses `--hero-height-fluid` (`clamp(560px, 85svh, 820px)`); ban vh-only shrink. Overlay hero: `--hero-content-reserve` + content `top` coupling.
+5. **SEO gate:** one `<h1>` per page; unique `title` + `meta description`.
+6. **Component vars:** every `{{VAR}}` supplied or defaulted; fail if placeholders remain in `dist/`.
+7. **Publish `dist/` only.** Keep `dist/` gitignored. Do **not** point GitHub Pages at `main`/(root) (no root `index.html` → **404**). Deploy built `dist/` to **`gh-pages`/(root)** or GitHub Actions. Emit `.nojekyll`. Wipe `dist/assets` before copy.
+8. **linkedom build guard:** skip Hero `video.load()` / `play()` when `window.__SITE_BUILD__` (set src/poster only).
 
 ### Should
 
@@ -132,6 +135,7 @@ Tailwind `preflight: false` 利用案件では `<h1>` に `margin: 0` 等で見�
 - Animation: `page:ready` in dev; `DOMContentLoaded` in production; `prefers-reduced-motion`; omit unused GSAP plugins per page.
 - Image delivery: resize ≈2× display width; `loading="lazy"` + `decoding="async"` below the fold; dedupe asset URLs.
 - Treat missing `<h2>` hierarchy and weak `:focus-visible` as Reviewer Improvements.
+- Optional overlay header kit: `header-overlay.css` + `data-header-overlay` / `.page-hero` ([responsive-patterns.md](./responsive-patterns.md)).
 
 ### Nice
 

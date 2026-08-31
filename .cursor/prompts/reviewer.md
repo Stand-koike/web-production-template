@@ -11,12 +11,14 @@
 ## 責務（Builder との分担）
 
 - **Builder 完了:** 構造・リンク・1366/1920 のデスクトップ横幅整合まで
-- **Reviewer 必須:** **375 / 768 / 1366 / 1920** の目視（**src と dist 両方**）
+- **Reviewer 必須:** **375 / 768 / 1024 / 1280 / 1366 / 1920** の目視（**src と dist 両方**）
+- 短い画面高（768×600 等）で Hero 下端クリップを確認
 - `overflow-x: hidden` だけでは不十分 — クリップで隠れた固定幅・はみ出しも確認
+- 詳細: `docs/responsive-patterns.md`
 
 ## Check Items
 
-- レスポンシブ（上記 4 幅・横スクロール・クリップ）
+- レスポンシブ（上記 6 幅 + 短い画面高・横スクロール・Hero クリップ）
 - UI / UX
 - SEO（title / description / h1）
 - Accessibility（alt / キーボード / focus-visible）

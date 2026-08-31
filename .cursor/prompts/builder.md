@@ -32,7 +32,8 @@
 2. **export HTML のラッパークラスをそのまま正としない**（可変幅 + max-width + 中央寄せ）
 3. `<main class="site-main">` / `body[data-page]` / 下層は `__SRC_BASE__`・`__ASSET_BASE__`
 4. **Builder 完了時に横幅チェックリストを実施**（1366/1920 — `docs/builder-workflow.md`）
-5. **375/768 の端末幅目視は Reviewer**（`docs/reviewer-checklist.md`）
+5. 全ページシェルに **`responsive-fluid.css`** を link（`docs/responsive-patterns.md`）
+6. **375/768/1024/1280 の端末幅目視は Reviewer**（`docs/reviewer-checklist.md`）
 
 下層の新規ページは `src/templates/web-production/page.shell.html` をコピーして始める。
 
@@ -50,7 +51,7 @@
 - Animation 前: `main` 直下にセクション、Hero に `data-animate="hero"`、カード列親に `data-animate="stagger-grid"`
 - Header / Footer に animate フックを付けない
 - セクション HTML は UTF-8 BOM なし
-- 詳細は `docs/builder-workflow.md` / `docs/page-shell.md` / `docs/reviewer-checklist.md` を参照
+- 詳細は `docs/builder-workflow.md` / `docs/page-shell.md` / `docs/responsive-patterns.md` / `docs/reviewer-checklist.md` を参照
 
 ## Output
 

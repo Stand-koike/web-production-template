@@ -37,7 +37,7 @@ Pencil.dev（デザイン export）
     ↓
 ② Animation    … GSAP（fade-up / stagger 等）
     ↓
-③ Reviewer     … 375/768/1366/1920 目視・dist 確認
+③ Reviewer     … 375/768/1024/1280/1366/1920 目視・dist 確認
     ↓
 ④ Performance  … 画像・配信の最適化
     ↓
@@ -52,7 +52,7 @@ Pencil.dev（デザイン export）
 |------|----------|------------|
 | Builder | 構造・リンク・**1366/1920** 横幅 | シェル規約 OK・ビルド成功 |
 | Animation | 動き・dist でアニメ起動 | src / dist 両方 |
-| Reviewer | **375/768/1366/1920**・SEO・a11y | Critical ゼロ |
+| Reviewer | **375/768/1024/1280/1366/1920**・短い画面高・SEO・a11y | Critical ゼロ |
 | Performance | 画像サイズ・lazy 等 | 大きな改善のみ実施 |
 | Deploy | **dist/** の公開 | 本番 URL で 404 なし |
 
@@ -94,7 +94,7 @@ Cursor で **案件リポジトリを開き**、該当プロンプトを `@` で
 ### ① Builder
 
 **プロンプト:** `.cursor/prompts/builder.md`  
-**参照 doc:** [builder-workflow.md](./builder-workflow.md) / [page-shell.md](./page-shell.md)
+**参照 doc:** [builder-workflow.md](./builder-workflow.md) / [page-shell.md](./page-shell.md) / [responsive-patterns.md](./responsive-patterns.md)
 
 **依頼例:**
 
@@ -109,9 +109,11 @@ Pencil export をページシェル + セクションに分解してください
 
 - [ ] `main.site-main` / `body[data-page]` / 下層は `__SRC_BASE__`・`__ASSET_BASE__`
 - [ ] 固定 artboard 幅ラッパーなし
+- [ ] 全ページに `responsive-fluid.css` を link
 - [ ] 各ページ `<h1>` + `title` + `meta description`
 - [ ] 1366/1920 で Header・main・Footer 横幅一致
-- [ ] **375/768 はまだ Reviewer の仕事**
+- [ ] 1024/1280 で横スクロールなし
+- [ ] **375/768/短い画面高はまだ Reviewer の仕事**
 
 下層ページ追加: `src/templates/web-production/page.shell.html` をコピー。
 
@@ -138,17 +140,17 @@ Header/Footer は動かさない。
 ### ③ Reviewer
 
 **プロンプト:** `.cursor/prompts/reviewer.md`  
-**参照 doc:** [reviewer-checklist.md](./reviewer-checklist.md)
+**参照 doc:** [reviewer-checklist.md](./reviewer-checklist.md) / [responsive-patterns.md](./responsive-patterns.md)
 
 **依頼例:**
 
 ```text
 @.cursor/prompts/reviewer.md @docs/reviewer-checklist.md @src/ @dist/
 
-375 / 768 / 1366 / 1920 で src と dist をレビュー。コード修正はせず報告のみ。
+375 / 768 / 1024 / 1280 / 1366 / 1920 で src と dist をレビュー。768×600 等の短い高さも Hero を確認。コード修正はせず報告のみ。
 ```
 
-**Reviewer 必須:** 4 幅すべてを **src と dist** で目視。  
+**Reviewer 必須:** 上記 6 幅すべてを **src と dist** で目視。短い画面高（768×600 等）で Hero 下端クリップも確認。  
 `overflow-x: hidden` だけでは不十分（クリップで隠れた崩れを疑う）。
 
 指摘修正後、必要なら Reviewer を再実行。
@@ -242,6 +244,8 @@ assets/                   画像（開発 ../assets/ → 本番 assets/）
 | 画像 404（開発） | サーバーを `src/` から起動 | **ルート**から `py -m http.server` |
 | dist に `{{VAR}}` 残存 | コンポーネント未展開 | data-* 属性 or ビルド失敗を確認 |
 | 横スクロールは無いがレイアウトがおかしい | overflow でクリップ | Reviewer で固定幅残留を確認 |
+| Hero テキストが下で切れる | `min(820px, 70vh)` + 固定 `top` | [responsive-patterns.md](./responsive-patterns.md) の `--hero-height-fluid` |
+| 1024–1300px で split がはみ出す | Pencil 固定幅のまま | `responsive-fluid.css` + セクション流体化 |
 
 ---
 
@@ -249,10 +253,10 @@ assets/                   画像（開発 ../assets/ → 本番 assets/）
 
 案件で得た知見のうち、**一般化できるものだけ**をテンプレへ PR / 貼り付け。
 
-**戻す例:** シェル規約・ビルド手順・Reviewer チェック・Deploy 404 防止  
-**戻さない例:** 宿名・コピー・写真・下層 IA・案件固有 JS
+**戻す例:** シェル規約・ビルド手順・Reviewer チェック・Deploy 404 防止・768–1439px 流体化・Hero clamp  
+**戻さない例:** 宿名・コピー・写真・下層 IA・案件固有 JS・Pencil 固有セレクタ
 
-形式の例は [reviewer-checklist.md](./reviewer-checklist.md) 末尾の「Feedback」節。
+形式の例は [reviewer-checklist.md](./reviewer-checklist.md) 末尾の「Feedback」節。実装詳細は [responsive-patterns.md](./responsive-patterns.md)。
 
 ---
 
@@ -264,6 +268,7 @@ assets/                   画像（開発 ../assets/ → 本番 assets/）
 | 案件の初回セットアップ | [case-adoption.md](./case-adoption.md) |
 | Builder 手順 | [builder-workflow.md](./builder-workflow.md) |
 | 横幅・シェル規約 | [page-shell.md](./page-shell.md) |
+| レスポンシブ（768–1439px / Hero） | [responsive-patterns.md](./responsive-patterns.md) |
 | Reviewer 完了条件 | [reviewer-checklist.md](./reviewer-checklist.md) |
 | アニメーション | [animation-system.md](./animation-system.md) |
 | 画像・Performance | [performance.md](./performance.md) |
@@ -278,7 +283,7 @@ assets/                   画像（開発 ../assets/ → 本番 assets/）
 
 - [ ] `npm run build` 成功
 - [ ] `npm run preview` で TOP + 全下層 OK
-- [ ] Reviewer: 375/768/1366/1920（**dist 含む**）Critical ゼロ
+- [ ] Reviewer: 375/768/1024/1280/1366/1920（**dist 含む**）Critical ゼロ
 - [ ] Pages 設定が **dist → gh-pages**（main root 禁止）
 - [ ] 本番 URL で CSS / JS / 画像 404 なし
 

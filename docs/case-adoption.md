@@ -25,6 +25,7 @@ scripts/build-production.mjs
 package.json（scripts / linkedom / gsap）
 docs/builder-workflow.md
 docs/page-shell.md
+docs/responsive-patterns.md
 ```
 
 3. `npm install`
@@ -41,6 +42,8 @@ docs/page-shell.md
 - [ ] TOP 各セクションのコピー・画像
 - [ ] 下層ページ（必要トピック分）
 - [ ] 各ページシェルが [page-shell.md](./page-shell.md) 準拠（`main.site-main` / `data-page` / 固定幅ラッパーなし）
+- [ ] 全ページに `responsive-fluid.css` を link（[responsive-patterns.md](./responsive-patterns.md)）
+- [ ] Overlay header 案件は `header-overlay.css` を追加 link
 
 ## 下層ページ追加テンプレ
 
@@ -68,7 +71,8 @@ npm run build
 npm run preview
 ```
 
-横幅: 1366/1920 は Builder、375/768 は Reviewer（`reviewer-checklist.md`）。
+横幅: 1366/1920 は Builder、375/768/1024/1280 は Reviewer（`reviewer-checklist.md`）。  
+Hero / compact desktop: `responsive-patterns.md`
 
 Deploy: **`dist/` のみ** — [deployment.md](./deployment.md)
 

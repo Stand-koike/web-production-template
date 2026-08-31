@@ -3,9 +3,10 @@
 ページシェル（TOP / 下層）の横幅・構造規約。  
 Builder で外部デザインツール由来 HTML を分解するとき、**シェル構造の不備が横幅崩れの主因**になりうる。
 
-実装の正: `src/index.html` / `src/pages/*.html` / `src/templates/web-production/page.shell.html` / `src/styles/main.css`
+実装の正: `src/index.html` / `src/pages/*.html` / `src/templates/web-production/page.shell.html` / `src/styles/main.css` / `src/styles/responsive-fluid.css`
 
-Reviewer 必須チェック: [reviewer-checklist.md](./reviewer-checklist.md)
+Reviewer 必須チェック: [reviewer-checklist.md](./reviewer-checklist.md)  
+Compact desktop / Hero 高さ: [responsive-patterns.md](./responsive-patterns.md)
 
 ---
 
@@ -34,6 +35,8 @@ Reviewer 必須チェック: [reviewer-checklist.md](./reviewer-checklist.md)
 - `.container` … `min(var(--layout-max-width), calc(100% - 2rem))` + 中央寄せ
 - `.page-shell` … flex column + `align-items: stretch` + max-width
 - `h1` … `margin: 0`（preflight off 案件でも見た目維持）
+- **stylesheet** … `tokens.css` → `theme.css` → `main.css` → **`responsive-fluid.css`**（768–1439px）
+- Overlay header 案件のみ … `header-overlay.css` を追加 link（[responsive-patterns.md](./responsive-patterns.md)）
 
 ---
 
@@ -80,7 +83,9 @@ Reviewer 必須チェック: [reviewer-checklist.md](./reviewer-checklist.md)
 | | Builder | Reviewer |
 |---|---------|----------|
 | 375 / 768 | — | **必須** |
+| 1024 / 1280 | 横スクロールなし | **必須** |
 | 1366 / 1920 | **必須** | **必須** |
+| 短い画面高（768×600 等） | Hero が切れないこと | **必須** |
 | dist 確認 | ビルド成功 | **目視必須** |
 | overflow hidden | 設定する | **クリップ残存を疑う** |
 
@@ -89,5 +94,6 @@ Reviewer 必須チェック: [reviewer-checklist.md](./reviewer-checklist.md)
 ## 関連
 
 - [builder-workflow.md](./builder-workflow.md)
+- [responsive-patterns.md](./responsive-patterns.md)
 - [reviewer-checklist.md](./reviewer-checklist.md)
 - [case-adoption.md](./case-adoption.md)

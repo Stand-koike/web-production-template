@@ -15,7 +15,7 @@ Builder Agent  ← 本ドキュメント
 Animation Agent
     ↓ GSAP アニメーション
 Reviewer
-    ↓ 375/768/1366/1920 目視・dist 確認
+    ↓ 375/768/1024/1280/1366/1920 目視・dist 確認
 Performance
     ↓ 画像/CSS/JS
 Deploy
@@ -333,6 +333,8 @@ project-root/
 - [ ] セクション内に **absolute + 固定 artboard 幅** の残存がない
 - [ ] 横スクロールが発生しない
 - [ ] export 由来の固定幅ラッパーをシェルに残していない
+- [ ] 全ページシェルに `responsive-fluid.css` を link（[responsive-patterns.md](./responsive-patterns.md)）
+- [ ] 1024px / 1280px で横スクロールなし（compact desktop）
 
 **Builder Agent 向け（5行）**
 
@@ -368,8 +370,8 @@ project-root/
 
 ### Reviewer 引継ぎ
 
-Builder 完了後、**375 / 768 / 1366 / 1920** の目視は Reviewer 必須。  
-チェックリスト: [reviewer-checklist.md](./reviewer-checklist.md)
+Builder 完了後、**375 / 768 / 1024 / 1280 / 1366 / 1920**（＋短い画面高）の目視は Reviewer 必須。  
+チェックリスト: [reviewer-checklist.md](./reviewer-checklist.md) / Hero・compact desktop: [responsive-patterns.md](./responsive-patterns.md)
 
 ### ページ固有スクリプトを足すとき（完了条件）
 
@@ -404,10 +406,14 @@ Builder 完了後、**375 / 768 / 1366 / 1920** の目視は Reviewer 必須。
 13. **レスポンシブ目視は Reviewer** — Builder は 1366/1920 の横幅整合まで
 14. **`overflow-x: hidden` は安全網** — クリップで隠した固定幅を Builder 完了としない
 15. **コンポーネント `{{VAR}}` は dist に残さない**
+16. **`responsive-fluid.css` を全シェルに link** — 768–1439px の流体化（[responsive-patterns.md](./responsive-patterns.md)）
+17. **Hero 高さは `clamp(560px, 85svh, 820px)`** — `min(820px, 70vh)` のみ禁止。Overlay hero は `--hero-content-reserve` と `top` を連動
+18. **linkedom ビルド時** — Hero 動画の `load()` / `play()` を `__SITE_BUILD__` でスキップ
 
-## Feedback — responsive & Reviewer (generalized)
+### 一般化フィードバック（英語 PR 用・参照先）
 
-Must / Should / Do not template の全文は [reviewer-checklist.md](./reviewer-checklist.md) 末尾を参照。
+案件横展開向けの Must / Should / Do not template は [reviewer-checklist.md](./reviewer-checklist.md) 末尾「Feedback」節が正本。  
+上記 16–18 はそのうちレスポンシブ・ビルド guard を日本語で要約したもの。実装詳細は [responsive-patterns.md](./responsive-patterns.md)。
 
 ---
 
@@ -421,6 +427,8 @@ Must / Should / Do not template の全文は [reviewer-checklist.md](./reviewer-
 | `src/scripts/load-data.js` | JSON 注入・`resolvePageHref` |
 | `scripts/build-production.mjs` | 本番静的 HTML 生成 |
 | `src/templates/web-production/site.manifest.json` | ビルド設定 |
+| `src/styles/responsive-fluid.css` | 768–1439px 流体化 |
+| `docs/responsive-patterns.md` | Hero clamp / compact desktop 規約 |
 | `package.json` | `build` スクリプト |
 
 ---
@@ -428,4 +436,5 @@ Must / Should / Do not template の全文は [reviewer-checklist.md](./reviewer-
 ## 参考事例
 
 宿泊施設案件（ならいの風）では TOP 1 + 下層 6 ページ、40+ セクション、49 画像参照を本構成で運用しました。  
-案件固有の作業（コピー・画像・デザイン調整）は **案件リポジトリ** で行い、本テンプレートには反映しません。
+**レスポンシブ知見**（1024–1439px 流体化、Hero 縦クリップ対策、linkedom 動画 guard）は [responsive-patterns.md](./responsive-patterns.md) へフィードバック済み。  
+案件固有のコピー・画像・Pencil セレクタは **案件リポジトリ** で行い、テンプレート本体には戻しません。

@@ -57,6 +57,13 @@ function applyFooterData(facility) {
     return;
   }
 
+  footer.dataset.homeHref =
+    window.__HOME_HREF__ ||
+    (window.__SITE_BUILD__ && window.__SRC_BASE__
+      ? "index.html"
+      : window.__SRC_BASE__
+        ? `${window.__SRC_BASE__}index.html`
+        : facility.brand.homeHref);
   footer.dataset.logoSrc = resolveAssetPath(facility.brand.logoSrc);
   footer.dataset.logoAlt = facility.brand.name;
   footer.dataset.addressText = facility.contact.address;
@@ -136,6 +143,43 @@ function applyNavGroupData(content) {
   applyNavGroupBind("nav-footer", itemsJson);
 }
 
+function setHeroVideo(video, videoSrc, posterPath) {
+  if (!video || !videoSrc) {
+    return;
+  }
+
+  const source = video.querySelector("source");
+  if (source) {
+    source.src = videoSrc;
+  } else {
+    video.src = videoSrc;
+  }
+
+  if (posterPath) {
+    video.poster = posterPath;
+  }
+
+  /* linkedom ビルド時は DOM media API を呼ばない — docs/responsive-patterns.md */
+  if (window.__SITE_BUILD__) {
+    return;
+  }
+
+  if (typeof video.load === "function") {
+    video.load();
+  }
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (typeof video.pause === "function") {
+      video.pause();
+    }
+    return;
+  }
+
+  if (typeof video.play === "function") {
+    video.play().catch(function () {});
+  }
+}
+
 function applyHeroData(content) {
   const hero = document.querySelector('[data-content-bind="hero"]');
   if (!hero || !content.hero) {
@@ -144,12 +188,15 @@ function applyHeroData(content) {
 
   const data = content.hero;
   const image = hero.querySelector('[data-bind="hero-image"]');
+  const video = hero.querySelector("[data-hero-video]");
   const eyebrow = hero.querySelector('[data-bind="hero-eyebrow"]');
   const title = hero.querySelector('[data-bind="hero-title"]');
   const description = hero.querySelector('[data-bind="hero-description"]');
   const cta = hero.querySelector('[data-bind="hero-cta"]');
 
-  if (image) {
+  if (video && data.videoSrc) {
+    setHeroVideo(video, resolveAssetPath(data.videoSrc), resolveAssetPath(data.videoPoster || data.image));
+  } else if (image) {
     image.src = resolveAssetPath(data.image);
     image.alt = data.title;
   }
